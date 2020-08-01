@@ -21,4 +21,7 @@ class Game{
              form.display();
          }
      }
+     play(){
+         form.hide();
+     }
 }
