@@ -26,9 +26,13 @@ class Game{
              form.display();
          }
          car1=createSprite(100,200);
+         car1.addImage(car1image)
          car2=createSprite(200,200);
+         car2.addImage(car2image)
          car3=createSprite(300,200);
+         car3.addImage(car3image)
          car4=createSprite(400,200);
+         car4.addImage(car4image)
          cars=[car1,car2,car3,car4];
 
      }
@@ -37,16 +41,21 @@ class Game{
          Player.getPlayerInfo();
 
          if(allPlayers!==undefined){
+             background(groundimage);
+             image(trackimage,0,-displayHeight*4,displayWidth,displayHeight*5);
              var index = 0;
              var x = 0;
              var y;
              for(var plr in allPlayers){
                  index++;
-                 x=x+100;
+                 x=x+240;
                  y=displayHeight-allPlayers[plr].distance;
                  cars[index-1].x=x
                  cars[index-1].y=y
                  if(index===player.index){
+                     stroke(10);
+                     fill("red")
+                     ellipse(x,y,60,60)
                      cars[index-1].shapeColor="red"
                      camera.position.x=displayWidth/2
                      camera.position.y=cars[index-1].y
@@ -58,7 +67,13 @@ class Game{
          player.distance=player.distance+50;
          player.update();
          }
+         if(player.distance>3500){
+             gameState=2
+         }
          drawSprites();
+     }
+     end(){
+     console.log("game ended")    
      }
 }
 
